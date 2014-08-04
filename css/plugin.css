@@ -1,0 +1,144 @@
+.vcard.box {
+    display: block;
+    padding: 9.5px;
+    margin: 5px 0 10px;
+    font-size: 13px;
+    line-height: 1.42857143;
+    color: #333333;
+    background-color: #f5f5f5;
+    border: 1px solid #cccccc;
+    border-radius: 3px;
+}
+
+/*-----------------------------------------------------------------------------
+  Image Styles - 1. right-align: Text to left of image.
+                 2. left-align: Text to right of image.
+                 3. image-circle: Image is displayed as a circle.
+                 4. img-thumbnail: Image has rounded corners and a border.
+                 5. img-rounded: rounds the corner of the image.
+ ----------------------------------------------------------------------------*/
+
+.widget div.me-widget img.right-align {
+    float: right;
+    margin-left: .5em;
+}
+
+.widget div.me-widget img.left-align {
+    float: left;
+    margin-right: .5em;
+}
+
+
+/*------------------------------- Shape of image ----------------------------*/
+.widget div.me-widget img {
+    margin-bottom: .5em;
+}
+
+.widget div.me-widget .square {
+
+}
+
+.widget div.me-widget .circle {
+    border-radius: 50%;
+}
+
+.widget div.me-widget .thumbnail {
+    padding: 4px;
+    line-height: 1.42857143;
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+    border-radius: 4px;
+    -webkit-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+    display: inline-block;
+    width: 100% \9;
+    max-width: 100%;
+    height: auto;
+}
+
+.widget div.me-widget .rounded {
+    border-radius: 6px;
+}
+
+/*--------------------------General Formating--------------------------------*/
+
+.widget div.me-widget {
+    padding: 1em;
+}
+
+.widget .me-widget img {
+    border: 0;
+}
+
+.widget .me-widget:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+.widget .me-widget .center-text, .url {
+    text-align: canter;
+    text-align: -webkit-center;
+}
+
+.widget .me-widget .url {
+    margin-top: 1em;
+}
+
+/*-----------------------------User Styles-----------------------------------*/
+/* Widget container */
+.widget div#me-widget {
+    display: block;
+    padding: 9.5px;
+    margin: 5px 0 10px;
+    line-height: 1.42857143;
+    color: #333333;
+    background-color: #f5f5f5;
+    border: 1px solid #cccccc;
+    border-radius: 3px;
+}
+/* Picture */
+.widget .me-widget img {
+
+}
+/* Contact info */
+.widget .me-widget .vcard {
+
+}
+/* Name */
+.widget .me-widget .vcard > .fn.n {
+    font-size: big;
+}
+/* email */
+.widget .me-widget .vcard > .email {
+    font-size: small;
+}
+/* email */
+.widget .me-widget .vcard > .tel {
+    font-size: small;
+}
+/* location */
+.widget .me-widget .vcard > .adr {
+    font-size: small;
+}
+/* About Me */
+.widget .me-widget .vcard > .about {
+    margin-top: .5em;
+    text-align: center;
+}
+/* Social link container */
+.widget .me-widget .vcard > div.url {
+
+}
+/* Social links */
+.widget .me-widget .vcard > div.url > a {
+
+}
+
+#me_widget-13 div#me-widget {
+    border-color: none;
+    background-color: none;
+}
