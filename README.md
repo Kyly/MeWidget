@@ -23,5 +23,5 @@ Installation
 
 ###Styling
 
-![gavlnk](https://gravatar.com)
+[gravlnk](https://gravatar.com)
 
