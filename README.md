@@ -7,6 +7,8 @@ your Wordpress, offering easy customizations and straight forward styling.
 
 Description
 -----------
+*Me Widget* is a widget designed to used with Wordpress 3.5+ sites, and requires
+having a [Gravatar][gravlnk] profile
 ####Features
 - Display your Gravatar or a custom avatar.
 - Display some, all, or none of the personal information from your Gravatar
@@ -20,4 +22,6 @@ Installation
 ------------
 
 ###Styling
+
+![gavlnk](https://gravatar.com)
 
