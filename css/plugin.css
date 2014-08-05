@@ -13,18 +13,6 @@ GNU General Public License for more details (http://www.gnu.org/licenses/).
 
 */
 
-.vcard.box {
-    display: block;
-    padding: 9.5px;
-    margin: 5px 0 10px;
-    font-size: 13px;
-    line-height: 1.42857143;
-    color: #333333;
-    background-color: #f5f5f5;
-    border: 1px solid #cccccc;
-    border-radius: 3px;
-}
-
 /*-----------------------------------------------------------------------------
   Image Styles - 1. right-align: Text to left of image.
                  2. left-align: Text to right of image.

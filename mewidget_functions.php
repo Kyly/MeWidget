@@ -41,6 +41,7 @@ function icon_exist($name) {
 
     return in_array($name, $soc_array);
 }
+
 function get_grav_profile($email) {
 
     $email      = trim($email);// "MyEmailAddress@example.com"
@@ -52,6 +53,18 @@ function get_grav_profile($email) {
     $profile = unserialize($str);
 
     return $profile;
+}
+
+function get_custom_avatar($url, $attr) {
+    $default_attr = array('width' => '100%', 'class' => 'none');
+    $attr = wp_parse_args($attr, $default_attr);
+    $url = '<img src="'.$url.'"';
+
+    foreach ($attr as $key => $val)
+        $url .= ' '.$key.'="'.$val.'"';
+    $url .= ' />';
+
+    return $url;
 }
 
 /**

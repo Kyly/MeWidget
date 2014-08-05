@@ -67,6 +67,8 @@ class MeWidget extends WP_Widget {
         $soc_format   = '<div id="icons" class="url social-links">%s</div>';
         $vcard_head   = '<div id="%s" class="vcard">';
         $name_format  = '<div class="fn n">%s</div>';
+        $image;
+
         // Parse attributes
         $image_attr = str_replace(',', '&', $instance['image_attr']);
         parse_str($image_attr, $img_attr_array);
@@ -79,11 +81,15 @@ class MeWidget extends WP_Widget {
             echo $args['before_title'] . $title . $args['after_title'];
         }
 
-        echo get_gravatar(array(
-            'hash' => $instance['hash'],
-            'size' => (int) $instance['image_size'],
-            'attr' => $img_attr_array)
-        );
+        if ( empty( $instance['custom_img_url'] ) ){
+            echo get_gravatar(array(
+                'hash' => $instance['hash'],
+                'size' => (int) $instance['image_size'],
+                'attr' => $img_attr_array)
+            );
+        } else {
+            echo get_custom_avatar($instance['custom_img_url'], $img_attr_array);
+        }
 
         printf($vcard_head, $instance['name']);
 
@@ -133,7 +139,8 @@ class MeWidget extends WP_Widget {
             'about_me'         => '',
             'phone'            => '',
             'current_location' => '',
-            'accounts'         => ''
+            'accounts'         => '',
+            'custom_img_url'   => ''
         );
 
         // Parse existing values with defaults
@@ -215,6 +222,23 @@ class MeWidget extends WP_Widget {
                     . " <em>then</em> select from tho fallowing options.";
         }
 
+        $sample_img = '';
+        if ( empty( $instance['custom_img_url'] ) ){
+                $sample_img = get_gravatar(
+                    array(
+                        'hash' => $instance['hash'],
+                        'size' => 80,
+                        'attr' => array('class' => 'thumbnail', 'width' => '')
+                    )
+                );
+        } else {
+            $sample_img = get_custom_avatar($instance['custom_img_url'],
+                array(
+                    'class' => 'thumbnail',
+                    'width' => '100px',
+                )
+            );
+        }
     ?>
     <strong style="color: red;" class="alert">
         <?=$error?>
@@ -268,11 +292,15 @@ class MeWidget extends WP_Widget {
     </p>
     <p>
     <?php if (!empty($instance['hash']) && $enabled): ?>
-        <?=get_gravatar(array(
-            'hash' => $instance['hash'],
-            'size' => 80,
-            'attr' => array('class' => 'thumbnail', 'width' => ''))
-        )?>
+        <?=$sample_img?>
+        <p>
+        <label for="<?php
+            echo $this->get_field_id( 'custom_img_url' ); ?>"><?php _e( 'Custom Image Url:' ); ?></label>
+        <input class="widefat" id="<?php
+            echo $this->get_field_id( 'custom_img_url' ); ?>" name="<?php
+            echo $this->get_field_name( 'custom_img_url' ); ?>" type="text" value="<?php
+            echo esc_attr( $instance['custom_img_url'] ); ?>">
+        </p>
         <p>
         <label for="<?php
             echo $this->get_field_id( 'image_attr' ); ?>"><?php _e( 'Image attributes:' ); ?></label>
@@ -283,14 +311,16 @@ class MeWidget extends WP_Widget {
         </p>
         <em> Attributes must follow the following format. ex. <code>name=value</code>,
         for more then one use commas. ex <code>n1=v1, n2=v2, n3=v3</code>
-        <p>
-        <label for="<?php
-            echo $this->get_field_id( 'image_size' ); ?>"><?php _e( 'Image size:' ); ?></label>
-        <input class="widefat" id="<?php
-            echo $this->get_field_id( 'image_size' ); ?>" name="<?php
-            echo $this->get_field_name( 'image_size' ); ?>" type="text" value="<?php
-            echo esc_attr( $instance['image_size'] ); ?>">
-        </p>
+        <?php if (empty($instance['custom_img_url'])) : ?>
+            <p>
+            <label for="<?php
+                echo $this->get_field_id( 'image_size' ); ?>"><?php _e( 'Image size:' ); ?></label>
+            <input class="widefat" id="<?php
+                echo $this->get_field_id( 'image_size' ); ?>" name="<?php
+                echo $this->get_field_name( 'image_size' ); ?>" type="text" value="<?php
+                echo esc_attr( $instance['image_size'] ); ?>">
+            </p>
+        <?php endif; ?>
     <?php endif; ?>
     </p>
     <?php
@@ -314,7 +344,7 @@ class MeWidget extends WP_Widget {
             'hash','title','gravatar_account','image_attr','image_size','option_name',
             'option_about_me','option_phone','option_email',
             'option_curr_loc','option_accounts','name','about_me','phone',
-            'current_location', 'option_accounts', 'accounts'
+            'current_location', 'option_accounts', 'accounts', 'custom_img_url'
         );
 
         $instance = array();
