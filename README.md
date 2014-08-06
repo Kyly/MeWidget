@@ -19,7 +19,7 @@ having a [Gravatar][] profile.
 - **_Social Icons_**\*  : Displays icons for your verified accounts from your Wordpress profile.
 
 \*Icons are provided by [Font Awesome][3] created by [Dave Gandy][2], the font's cheat sheet is found [here] [1],
-and the list that the widget recognizes is found [here](soc_icon_fa) (_This list may not be complete, if there is a icon
+and the list that the widget recognizes is found [here](MeWidget/soc_icons_fa) (_This list may not be complete, if there is a icon
 that is in Awesome Fonts that should be included in this list please let me know_).
 
 Installation
