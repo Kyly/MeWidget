@@ -9,7 +9,8 @@ Description
 -----------
 *Me Widget* is a widget designed to used with Wordpress 3.5+ sites, and requires
 having a [Gravatar](https://gravatar.com) profile.
-| ####Features |                                                             |
+
+| Features |                                                             |
 |:-------------|:------------------------------------------------------------|
 | Avatar       | Display your Gravatar or a custom avatar.                   |
 | Profile Info | Display some, all, or none of the personal information from your Gravatar profile. |
