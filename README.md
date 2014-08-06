@@ -18,7 +18,7 @@ having a [Gravatar][] profile.
 - **_CSS_**           : Easy to edit or make your own styles adding the style template to your existing style sheet
 - **_Social Icons_**\*  : Displays icons for your verified accounts from your Wordpress profile.
 
-\*Icons are provided [Font Awesome][], the font's cheat sheet is found [here] [1],
+\*Icons are provided by [Font Awesome][fontawesome], the font's cheat sheet is found [here] [1],
 and the list that the widget recognizes is found in this repository in a file
 named ````soc_icon_fa```` (_This list may not be complete, if there is a icon
 that is in Awesome Fonts that should be included in this list please let me know_).
@@ -29,5 +29,5 @@ Installation
 ###Styling
 
 [gravatar]: https://gravatar.com "Gravatar"
-[fontawsome]: http://fortawesome.github.io/Font-Awesome/ "Font Awesome"
+[fontawesome]: http://fortawesome.github.io/Font-Awesome/ "Font Awesome"
 [1]: http://fortawesome.github.io/Font-Awesome/icons/ "Font Awesome Icons"
