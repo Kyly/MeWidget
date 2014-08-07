@@ -14,20 +14,30 @@ GNU General Public License for more details (http://www.gnu.org/licenses/).
 
 */
 
-function load_font_awesome_admin_style($hook) {
+/**
+ * Que up styles for the widget dashboard.
+ * @param $hook registered Wordpress hook.
+ * @return none
+ */
+function load_me_widget_admin_styles($hook) {
     if ('widgets.php' != $hook)
         return;
 
-    wp_enqueue_style( 'font-awesome',
-        '//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css',
-        null, '4.1.0' );
-
     wp_register_style( 'MeWidget', plugins_url( 'me-widget/css/plugin.css' ) );
     wp_enqueue_style( 'MeWidget' );
+
+    wp_enqueue_style( 'font-awesome',
+        plugins_url( 'me-widget/css/font-awesome.min.css' ),
+        null, '4.1.0' );
+
 }
 
-
-function icon_exist($name) {
+/**
+ * Check if icon exists in font using its name.
+ * @param $name is checked list of site icon names from Awesome Font.
+ * @return true if $name is matched.
+ */
+function me_widget_icon_exist($name) {
     $soc_array = array(
         'bitbucket','apple','bitcoin','btc','code-fork','codepen','delicious',
         'deviantart','digg','dribbble','dropbox','drupal','empire','facebook',
@@ -42,7 +52,7 @@ function icon_exist($name) {
     return in_array($name, $soc_array);
 }
 
-function get_grav_profile($email) {
+function me_widget_get_grav_profile($email) {
 
     $email      = trim($email);// "MyEmailAddress@example.com"
     $email      = strtolower($email);// "myemailaddress@example.com"
@@ -55,7 +65,7 @@ function get_grav_profile($email) {
     return $profile;
 }
 
-function get_custom_avatar($url, $attr) {
+function me_widget_get_custom_avatar($url, $attr) {
     $default_attr = array('width' => '100%', 'class' => 'none');
     $attr = wp_parse_args($attr, $default_attr);
     $url = '<img src="'.$url.'"';
@@ -79,7 +89,7 @@ function get_custom_avatar($url, $attr) {
  * @return String containing either just a URL or a complete image tag
  * @source http://gravatar.com/site/implement/images/php/
  */
-function get_gravatar($args) {
+function me_widget_get_gravatar($args) {
 
     // $email_hash, $s = 200, $d = 'mm', $r = 'g', $img = true, $atts = array()
     $default_attr = array('width' => '100%', 'class' => 'circle');
@@ -116,7 +126,7 @@ function get_gravatar($args) {
  * @param string $accounts serialized array of Gravatar verified accounts info.
  * @return string
  */
-function get_accounts_icons($accounts) {
+function me_widget_get_accounts_icons($accounts) {
 
     // Check if any accounts where given
     if (empty($accounts))
@@ -130,7 +140,7 @@ function get_accounts_icons($accounts) {
     $last_key = key($accounts);
 
     foreach ($accounts as $account => $url) {
-        if (!icon_exist($account))
+        if (!me_widget_icon_exist($account))
             continue;
 
         $output .= '  <a class="fa fa-'. $account . '" href="'
@@ -142,7 +152,8 @@ function get_accounts_icons($accounts) {
 
 }
 
-function get_vcard_head($name) {
+
+function me_widget_get_vcard_head($name) {
     $output;
     if (!empty($name)) {
         $name_array = explode(' ', $name);

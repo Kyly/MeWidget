@@ -41,8 +41,8 @@ class MeWidget extends WP_Widget {
         wp_register_style( 'MeWidget', plugins_url( 'me-widget/css/plugin.css' ) );
         wp_enqueue_style( 'MeWidget' );
 
-        wp_register_style( 'font-awesome', '//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css',
-            null, '4.1.0' );
+        wp_register_style( 'font-awesome',
+            plugins_url( 'me-widget/css/font-awesome.min.css' ), null, '4.1.0' );
         wp_enqueue_style('font-awesome');
 
     }
@@ -60,13 +60,14 @@ class MeWidget extends WP_Widget {
         // Locals
         $title        = apply_filters( 'widget_title', $instance['title'] );
         $grav_email   = $instance['gravatar_account'];
-        $email_format = '<a class="email" href="mailto:%s"> %s </a>';
+        $email_format = '<div class="email"><a href="mailto:%s">%s</a></div>';
         $adr_format   = '<div class="adr">%s</div>';
         $tel_format   = '<div class="tel">%s</div>';
         $about_format = '<div class="about">%s</div>';
         $soc_format   = '<div id="icons" class="url social-links">%s</div>';
         $vcard_head   = '<div id="%s" class="vcard">';
         $name_format  = '<div class="fn n">%s</div>';
+        $html         = '';
         $image;
 
         // Parse attributes
@@ -74,41 +75,46 @@ class MeWidget extends WP_Widget {
         parse_str($image_attr, $img_attr_array);
 
         echo $args['before_widget'];
-        // widget wrapper
-        echo '<div id="me-widget" class="me-widget">';
+
 
         if ( ! empty( $title ) ) {
-            echo $args['before_title'] . $title . $args['after_title'];
+            $html .= $args['before_title'] . $title . $args['after_title'];
         }
 
+        // widget wrapper
+        $html .= '<div id="me-widget" class="me-widget">';
+
         if ( empty( $instance['custom_img_url'] ) ){
-            echo get_gravatar(array(
+            $html .= me_widget_get_gravatar(array(
                 'hash' => $instance['hash'],
                 'size' => (int) $instance['image_size'],
                 'attr' => $img_attr_array)
             );
         } else {
-            echo get_custom_avatar($instance['custom_img_url'], $img_attr_array);
+            $html .= me_widget_get_custom_avatar($instance['custom_img_url'], $img_attr_array);
         }
 
-        printf($vcard_head, $instance['name']);
+        $html .= sprintf($vcard_head, $instance['name']);
 
         if (!empty($instance['option_name']) && !empty($instance['name']))
-            printf($name_format, $instance['name']);
+            $html .= sprintf($name_format, $instance['name']);
         if (!empty($instance['option_email']))
-            printf($email_format, $grav_email, $grav_email);
+            $html .= sprintf($email_format, $grav_email, $grav_email);
         if (!empty($instance['phone']) && !empty($instance['option_phone']))
-            printf($tel_format, $instance['phone']);
+            $html .= sprintf($tel_format, $instance['phone']);
         if (!empty($instance['current_location']) && !empty($instance['option_curr_loc']))
-            printf($adr_format, $instance['current_location']);
+            $html .= sprintf($adr_format, $instance['current_location']);
         if (!empty($instance['about_me']) && !empty($instance['option_about_me']))
-            printf($about_format, $instance['about_me']);
+            $html .= sprintf($about_format, $instance['about_me']);
         if (!empty($instance['accounts']) && !empty($instance['option_accounts']))
-            printf($soc_format, get_accounts_icons($instance['accounts']));
+            $html .= sprintf($soc_format, me_widget_get_accounts_icons($instance['accounts']));
 
         // close vcard
-        echo '</div> <!--vcard-->';
-        echo '</div> <!--me-widget-->';
+        $html .= '</div>';
+        $html .= '</div>';
+
+        echo wpautop( $html );
+
         echo $args['after_widget'];
     }
 
@@ -169,7 +175,7 @@ class MeWidget extends WP_Widget {
         // show error.
         if (!empty($instance['gravatar_account'])) {
 
-            $profile = get_grav_profile($instance['gravatar_account']);
+            $profile = me_widget_get_grav_profile($instance['gravatar_account']);
 
             // load options
             if (isset($profile['entry'])) {
@@ -224,7 +230,7 @@ class MeWidget extends WP_Widget {
 
         $sample_img = '';
         if ( empty( $instance['custom_img_url'] ) ){
-                $sample_img = get_gravatar(
+                $sample_img = me_widget_get_gravatar(
                     array(
                         'hash' => $instance['hash'],
                         'size' => 80,
@@ -232,7 +238,7 @@ class MeWidget extends WP_Widget {
                     )
                 );
         } else {
-            $sample_img = get_custom_avatar($instance['custom_img_url'],
+            $sample_img = me_widget_get_custom_avatar($instance['custom_img_url'],
                 array(
                     'class' => 'thumbnail',
                     'width' => '100px',
@@ -348,9 +354,6 @@ class MeWidget extends WP_Widget {
         );
 
         $instance = array();
-        // $instance['accounts'] = ( ! empty( $new_instance['accounts']))
-        //                             ? $new_instance['accounts']
-        //                                 : '';
 
         foreach ($values as $value) {
             $instance[$value] = ( ! empty( $new_instance[$value] ) )

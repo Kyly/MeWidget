@@ -70,6 +70,10 @@ GNU General Public License for more details (http://www.gnu.org/licenses/).
     padding: 1em;
 }
 
+.widget .me-widget p {
+    margin: 0;
+}
+
 .widget .me-widget img {
     border: 0;
 }
@@ -98,10 +102,10 @@ GNU General Public License for more details (http://www.gnu.org/licenses/).
     padding: 9.5px;
     margin: 5px 0 10px;
     line-height: 1.42857143;
-    color: #333333;
+    /*color: #333333;
     background-color: #f5f5f5;
     border: 1px solid #cccccc;
-    border-radius: 3px;
+    border-radius: 3px;*/
 }
 /* Picture */
 .widget .me-widget img {
@@ -113,7 +117,7 @@ GNU General Public License for more details (http://www.gnu.org/licenses/).
 }
 /* Name */
 .widget .me-widget .vcard > .fn.n {
-    font-size: big;
+    font-size: larger;
 }
 /* email */
 .widget .me-widget .vcard > .email {
@@ -141,7 +145,3 @@ GNU General Public License for more details (http://www.gnu.org/licenses/).
 
 }
 
-#me_widget-13 div#me-widget {
-    border-color: none;
-    background-color: none;
-}
