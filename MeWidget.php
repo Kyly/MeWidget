@@ -35,7 +35,24 @@ define( 'ME_WIDGET__PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 define( 'ME_WIDGET__PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 
 require_once( ME_WIDGET__PLUGIN_DIR . 'class.MeWidget.php' );
-require_once( ME_WIDGET__PLUGIN_DIR . 'mewidget_functions.php');
 
+/**
+ * Que up styles for the widget dashboard.
+ * @param $hook registered Wordpress hook.
+ * @return none
+ */
+function load_me_widget_admin_styles($hook) {
+    if ( 'widgets.php' != $hook )
+        return;
+
+    wp_register_style( 'MeWidget', plugins_url( 'me-widget/css/plugin.css' ) );
+    wp_enqueue_style( 'MeWidget' );
+
+    wp_enqueue_style( 'font-awesome',
+        plugins_url( 'me-widget/css/font-awesome.min.css' ),
+        null, '4.1.0' );
+
+}
 add_action( 'admin_enqueue_scripts', 'load_me_widget_admin_styles', 99 );
+
 add_action('widgets_init', create_function('', 'return register_widget("MeWidget");'));
