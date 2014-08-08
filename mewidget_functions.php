@@ -20,7 +20,7 @@ GNU General Public License for more details (http://www.gnu.org/licenses/).
  * @return none
  */
 function load_me_widget_admin_styles($hook) {
-    if ('widgets.php' != $hook)
+    if ( 'widgets.php' != $hook )
         return;
 
     wp_register_style( 'MeWidget', plugins_url( 'me-widget/css/plugin.css' ) );
@@ -37,7 +37,7 @@ function load_me_widget_admin_styles($hook) {
  * @param $name is checked list of site icon names from Awesome Font.
  * @return true if $name is matched.
  */
-function me_widget_icon_exist($name) {
+function me_widget_icon_exist( $name ) {
     $soc_array = array(
         'bitbucket','apple','bitcoin','btc','code-fork','codepen','delicious',
         'deviantart','digg','dribbble','dropbox','drupal','empire','facebook',
@@ -49,24 +49,24 @@ function me_widget_icon_exist($name) {
         ,'windows','wordpress','xing','yahoo','youtube'
     );
 
-    return in_array($name, $soc_array);
+    return in_array( $name, $soc_array );
 }
 
 function me_widget_get_grav_profile($email) {
 
-    $email      = trim($email);// "MyEmailAddress@example.com"
-    $email      = strtolower($email);// "myemailaddress@example.com"
-    $email_hash = md5($email);// "0bc83cb571cd1c50ba6f3e8a78ef1346"
+    $email      = trim( $email );// "MyEmailAddress@example.com"
+    $email      = strtolower( $email );// "myemailaddress@example.com"
+    $email_hash = md5( $email );// "0bc83cb571cd1c50ba6f3e8a78ef1346"
 
     // Get data from Gravitar
-    $str     = file_get_contents('http://www.gravatar.com/'.$email_hash.'.php');
-    $profile = unserialize($str);
+    $str     = wp_remote_fopen( 'http://www.gravatar.com/'.$email_hash.'.php' );
+    $profile = unserialize( $str );
 
     return $profile;
 }
 
-function me_widget_get_custom_avatar($url, $attr) {
-    $default_attr = array('width' => '100%', 'class' => 'none');
+function me_widget_get_custom_avatar( $url, $attr ) {
+    $default_attr = array( 'width' => '100%', 'class' => 'none' );
     $attr = wp_parse_args($attr, $default_attr);
     $url = '<img src="'.$url.'"';
 
@@ -92,7 +92,7 @@ function me_widget_get_custom_avatar($url, $attr) {
 function me_widget_get_gravatar($args) {
 
     // $email_hash, $s = 200, $d = 'mm', $r = 'g', $img = true, $atts = array()
-    $default_attr = array('width' => '100%', 'class' => 'circle');
+    $default_attr = array( 'width' => '100%', 'class' => 'circle' );
     $defaults = array(
         'hash' => '',
         'size' => 200,
@@ -103,10 +103,10 @@ function me_widget_get_gravatar($args) {
     );
     $args = wp_parse_args( $args, $defaults );
 
-    extract($args, EXTR_SKIP);
+    extract( $args, EXTR_SKIP );
     $attr = wp_parse_args($attr, $default_attr);
 
-    if (empty($size)) $size = 200;
+    if ( empty( $size ) ) $size = 200;
 
     $url = 'http://www.gravatar.com/avatar/';
     $url .= $hash;
@@ -126,26 +126,26 @@ function me_widget_get_gravatar($args) {
  * @param string $accounts serialized array of Gravatar verified accounts info.
  * @return string
  */
-function me_widget_get_accounts_icons($accounts) {
+function me_widget_get_accounts_icons( $accounts ) {
 
     // Check if any accounts where given
-    if (empty($accounts))
+    if ( empty( $accounts ) )
         return;
 
     // Get accounts array.
-    $accounts = unserialize($accounts);
+    $accounts = unserialize( $accounts );
     $output = '';
     // Find ending key
-    end($accounts);
-    $last_key = key($accounts);
+    end( $accounts );
+    $last_key = key( $accounts );
 
-    foreach ($accounts as $account => $url) {
-        if (!me_widget_icon_exist($account))
+    foreach ( $accounts as $account => $url ) {
+        if ( ! me_widget_icon_exist( $account ) )
             continue;
 
         $output .= '  <a class="fa fa-'. $account . '" href="'
         . $url.'" title="'. $account .'" target="_blank"></a>';
-        $output .= ($last_key != $account) ? '&nbsp&middot&nbsp' : '';
+        $output .= ( $last_key != $account ) ? '&nbsp&middot&nbsp' : '';
     }
 
     return $output;
@@ -153,21 +153,21 @@ function me_widget_get_accounts_icons($accounts) {
 }
 
 
-function me_widget_get_vcard_head($name) {
+function me_widget_get_vcard_head( $name ) {
     $output;
-    if (!empty($name)) {
-        $name_array = explode(' ', $name);
+    if ( ! empty( $name ) ) {
+        $name_array = explode( ' ', $name );
         $output  = '<div id="hcard-' . $name_array[0]
-                    . ((!empty($name_array[1])) ? '-'.$name_array[1]: '')
-                    . ((!empty($name_array[2])) ? '-'.$name_array[2]: '')
+                    . ( ( ! empty( $name_array[1] ) ) ? '-'.$name_array[1]: '' )
+                    . ( ( ! empty( $name_array[2] ) ) ? '-'.$name_array[2]: '' )
                     . '" class="vcard">';
         $output .= '<span class="fn n">'
                     . '<span class="given-name">'
                     . $name_array[0] . '</span>';
-        $output .= (!empty($name_array[1]))
+        $output .= ( ! empty( $name_array[1] ) )
                     ? '<span class="additional-name">&nbsp' . $name_array[1] . '</span>'
                         : '';
-        $output .= (!empty($name_array[2]))
+        $output .= ( ! empty( $name_array[2] ) )
                     ? '<span class="family-name">&nbsp' . $name_array[2] . '</span>'
                         : '';
         $output .= '</span></br>';

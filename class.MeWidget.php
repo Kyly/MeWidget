@@ -28,8 +28,8 @@ class MeWidget extends WP_Widget {
         add_action( 'wp_enqueue_scripts', array( $this, 'register_plugin_styles' ) );
 
         parent::__construct(
-            'me_widget', // Base ID
-            __('Me Widget', 'text_domain'), // Name
+            'widget_me', // Base ID
+            __( 'Me Widget', 'text_domain' ), // Name
             array( 'description' => __( 'Widget showing my info.', 'text_domain' ), ) // Args
         );
     }
@@ -43,7 +43,7 @@ class MeWidget extends WP_Widget {
 
         wp_register_style( 'font-awesome',
             plugins_url( 'me-widget/css/font-awesome.min.css' ), null, '4.1.0' );
-        wp_enqueue_style('font-awesome');
+        wp_enqueue_style( 'font-awesome' );
 
     }
 
@@ -96,18 +96,18 @@ class MeWidget extends WP_Widget {
 
         $html .= sprintf($vcard_head, $instance['name']);
 
-        if (!empty($instance['option_name']) && !empty($instance['name']))
-            $html .= sprintf($name_format, $instance['name']);
-        if (!empty($instance['option_email']))
-            $html .= sprintf($email_format, $grav_email, $grav_email);
-        if (!empty($instance['phone']) && !empty($instance['option_phone']))
-            $html .= sprintf($tel_format, $instance['phone']);
-        if (!empty($instance['current_location']) && !empty($instance['option_curr_loc']))
-            $html .= sprintf($adr_format, $instance['current_location']);
-        if (!empty($instance['about_me']) && !empty($instance['option_about_me']))
-            $html .= sprintf($about_format, $instance['about_me']);
-        if (!empty($instance['accounts']) && !empty($instance['option_accounts']))
-            $html .= sprintf($soc_format, me_widget_get_accounts_icons($instance['accounts']));
+        if ( ! empty( $instance['option_name'] ) && ! empty( $instance['name'] ) )
+            $html .= sprintf( $name_format, $instance['name'] );
+        if ( ! empty( $instance['option_email'] ) )
+            $html .= sprintf( $email_format, $grav_email, $grav_email );
+        if ( ! empty( $instance['phone'] ) && ! empty( $instance['option_phone'] ) )
+            $html .= sprintf( $tel_format, $instance['phone'] );
+        if ( ! empty( $instance['current_location'] ) && ! empty( $instance['option_curr_loc'] ) )
+            $html .= sprintf( $adr_format, $instance['current_location'] );
+        if ( ! empty( $instance['about_me'] ) && ! empty( $instance['option_about_me'] ) )
+            $html .= sprintf( $about_format, $instance['about_me'] );
+        if ( ! empty( $instance['accounts'] ) && ! empty( $instance['option_accounts'] ) )
+            $html .= sprintf( $soc_format, me_widget_get_accounts_icons($instance['accounts'] ) );
 
         // close vcard
         $html .= '</div>';
@@ -126,6 +126,11 @@ class MeWidget extends WP_Widget {
      * @param array $instance Previously saved values from database.
      */
     public function form( $instance ) {
+
+        if ( is_preview() ){
+            parent::form($instance);
+            return;
+        }
 
         // Setup defaults
         $defaults = array(
@@ -146,7 +151,8 @@ class MeWidget extends WP_Widget {
             'phone'            => '',
             'current_location' => '',
             'accounts'         => '',
-            'custom_img_url'   => ''
+            'custom_img_url'   => '',
+            'update'           => true
         );
 
         // Parse existing values with defaults
@@ -170,47 +176,47 @@ class MeWidget extends WP_Widget {
         $enabled   = false;
         $accounts  = array();
 
-
         // If gravatar_account is set but profile data has not been set
         // show error.
-        if (!empty($instance['gravatar_account'])) {
+        if ( ! empty( $instance['gravatar_account'] ) ) {
 
-            $profile = me_widget_get_grav_profile($instance['gravatar_account']);
+            $profile = me_widget_get_grav_profile( $instance['gravatar_account'] );
 
             // load options
-            if (isset($profile['entry'])) {
+            if ( isset( $profile['entry'] ) ) {
                 $enabled          = true;
                 $profile          = $profile['entry'][0];
                 $instance['hash'] = $profile['hash'];
 
 
                 // Set option values
-                if (isset($profile['emails']))
-                    foreach ($profile['emails'] as $email => $data) {
-                        if ($data['primary']) {
+                if ( isset( $profile['emails'] ) ){
+                    foreach ( $profile['emails'] as $email => $data ) {
+                        if ( $data['primary'] ) {
                             $instance['email'] = strip_tags($data['value']);
                         }
                     }
+                }
 
-                $instance['name']     = (isset($profile['displayName']))
+                $instance['name']     = ( isset( $profile['displayName'] ) )
                                             ? strip_tags($profile['displayName']): '';
-                $instance['about_me'] = (isset($profile['aboutMe']))
+                $instance['about_me'] = ( isset( $profile['aboutMe'] ) )
                                             ? strip_tags($profile['aboutMe']) : '';
-                $instance['phone']    = (isset($profile['phoneNumbers'][0]['value']))
-                                            ? strip_tags($profile['phoneNumbers'][0]['value'])
+                $instance['phone']    = ( isset( $profile['phoneNumbers'][0]['value'] ) )
+                                            ? strip_tags( $profile['phoneNumbers'][0]['value'] )
                                                 : '';
-                $instance['current_location'] = (isset($profile['currentLocation']))
-                                                    ? strip_tags($profile['currentLocation'])
+                $instance['current_location'] = ( isset( $profile['currentLocation'] ) )
+                                                    ? strip_tags( $profile['currentLocation'] )
                                                         : '';
-                if (isset($profile['accounts'])) {
-                    for ($i = 0; $i < count($profile['accounts']); $i++) {
+                if ( isset( $profile['accounts'] ) ) {
+                    for ( $i = 0; $i < count( $profile['accounts'] ); $i++ ) {
                         $name = $profile['accounts'][$i]['shortname'];
                         $url  = $profile['accounts'][$i]['url'];
                         if($name == 'google') $name .= '-plus';
                         $accounts[$name] = $url;
                         $instance['accounts'] = serialize($accounts);
                     }
-                    foreach ($accounts as $account => $url) {
+                    foreach ( $accounts as $account => $url ) {
                         $acc_icons .= '  <span class="fa fa-'. $account
                                         . '"> </span>  ';
                     }
@@ -278,15 +284,15 @@ class MeWidget extends WP_Widget {
         <?php $instance_opt = ( $enabled ) ? $instance[$opt] : ''; ?>
         <input class="checkbox" type="checkbox" <?php
             checked($instance_opt, 'on'); ?> id="<?php
-            echo $this->get_field_id($opt); ?>" name="<?php
-            echo $this->get_field_name($opt); ?>" <?php
+            echo $this->get_field_id( $opt ); ?>" name="<?php
+            echo $this->get_field_name( $opt ); ?>" <?php
             echo $enabled ? 'enabled' : 'disabled'; ?>/>
         <label for="<?php
-            echo $this->get_field_id($opt); ?>"><?php
-            echo str_replace('_', ' ', $val);
-            echo ($val != 'accounts') ? ' [<em>'.$instance_val.'</em>]': ' ['. $acc_icons .']'; ?>
+            echo $this->get_field_id( $opt ); ?>"><?php
+            echo str_replace( '_', ' ', $val );
+            echo ( $val != 'accounts' ) ? ' [<em>'.$instance_val.'</em>]': ' ['. $acc_icons .']'; ?>
         </label>
-        <?php if ($val != 'gravatar_account'): ?>
+        <?php if ( $val != 'gravatar_account' ): ?>
             <input type="hidden" id="<?php
                 echo $this->get_field_id( $val ); ?>" name="<?php
                 echo $this->get_field_name( $val ); ?>" type="text" value="<?php
@@ -297,7 +303,7 @@ class MeWidget extends WP_Widget {
     <!-- end check boxes for options -->
     </p>
     <p>
-    <?php if (!empty($instance['hash']) && $enabled): ?>
+    <?php if ( ! empty( $instance['hash'] ) && $enabled ): ?>
         <?=$sample_img?>
         <p>
         <label for="<?php
@@ -317,7 +323,7 @@ class MeWidget extends WP_Widget {
         </p>
         <em> Attributes must follow the following format. ex. <code>name=value</code>,
         for more then one use commas. ex <code>n1=v1, n2=v2, n3=v3</code>
-        <?php if (empty($instance['custom_img_url'])) : ?>
+        <?php if ( empty( $instance['custom_img_url'] ) ) : ?>
             <p>
             <label for="<?php
                 echo $this->get_field_id( 'image_size' ); ?>"><?php _e( 'Image size:' ); ?></label>
@@ -334,6 +340,10 @@ class MeWidget extends WP_Widget {
     }
 
 
+    /**
+     * Update profile information
+     *
+     */
 
     /**
      * Sanitize widget form values as they are saved.
@@ -347,13 +357,18 @@ class MeWidget extends WP_Widget {
      */
     public function update( $new_instance, $old_instance ) {
         $values = array(
-            'hash','title','gravatar_account','image_attr','image_size','option_name',
+            'hash','title','gravatar_account','image_attr','option_name',
             'option_about_me','option_phone','option_email',
             'option_curr_loc','option_accounts','name','about_me','phone',
             'current_location', 'option_accounts', 'accounts', 'custom_img_url'
         );
 
         $instance = array();
+
+        // Check if valid int is passed
+        $image_size = $new_instance['image_size'];
+        $instance['image_size'] = ( ! empty( $image_size ) || is_numeric( $image_size ) )
+                                    ? $image_size : 200;
 
         foreach ($values as $value) {
             $instance[$value] = ( ! empty( $new_instance[$value] ) )
