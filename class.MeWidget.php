@@ -37,20 +37,6 @@ class MeWidget extends WP_Widget
     }
 
     /**
-     * Register and enqueue style sheet.
-     */
-    public function register_plugin_styles()
-    {
-        wp_register_style('MeWidget', plugins_url('me-widget/css/plugin.css'));
-        wp_enqueue_style('MeWidget');
-
-        wp_register_style('font-awesome',
-            plugins_url('me-widget/css/font-awesome.min.css'), null, '4.1.0');
-        wp_enqueue_style('font-awesome');
-
-    }
-
-    /**
      * Front-end display of widget.
      *
      * @see WP_Widget::widget()
@@ -80,7 +66,6 @@ class MeWidget extends WP_Widget
         parse_str($image_attr, $img_attr_array);
 
         echo $args['before_widget'];
-
 
         if (!empty($title)) {
             $html .= $args['before_title'] . $title . $args['after_title'];
@@ -315,6 +300,57 @@ class MeWidget extends WP_Widget
 
     }
 
+     /**
+     * Sanitize widget form values as they are saved.
+     *
+     * @see WP_Widget::update()
+     *
+     * @param array $new_instance Values just sent to be saved.
+     * @param array $old_instance Previously saved values from database.
+     *
+     * @return array Updated safe values to be saved.
+     */
+    public function update($new_instance, $old_instance)
+    {
+        $values = array(
+            'gravatar_account', 'image_attr', 'option_name',
+            'option_about_me', 'option_phone', 'option_email',
+            'option_curr_loc', 'option_accounts', 'title',
+            'option_accounts', 'custom_img_url'
+        );
+
+        $instance = array();
+
+        $instance = $this->get_profile_data($new_instance);
+
+        // Check if valid int is passed
+        $image_size = $new_instance['image_size'];
+        $instance['image_size'] = (!empty($image_size) || is_numeric($image_size))
+            ? $image_size : 200;
+
+        foreach ($values as $value) {
+            $instance[$value] = (!empty($new_instance[$value]))
+                ? strip_tags($new_instance[$value])
+                : '';
+        }
+
+        return $instance;
+    }
+
+    /**
+     * Register and enqueue style sheet.
+     */
+    public function register_plugin_styles()
+    {
+        wp_register_style('MeWidget', ME_WIDGET__PLUGIN_URL. '/css/plugin.css' );
+        wp_enqueue_style('MeWidget');
+
+        wp_register_style('font-awesome',
+            ME_WIDGET__PLUGIN_URL. '/css/font-awesome.min.css', null, '4.1.0');
+        wp_enqueue_style('font-awesome');
+
+    }
+
     /*
      * -----------------------------------------------------------------------
      * The following are private helper methods that make the core
@@ -521,42 +557,6 @@ class MeWidget extends WP_Widget
         return $new_instance;
     }
 
-    /**
-     * Sanitize widget form values as they are saved.
-     *
-     * @see WP_Widget::update()
-     *
-     * @param array $new_instance Values just sent to be saved.
-     * @param array $old_instance Previously saved values from database.
-     *
-     * @return array Updated safe values to be saved.
-     */
-    public function update($new_instance, $old_instance)
-    {
-        $values = array(
-            'gravatar_account', 'image_attr', 'option_name',
-            'option_about_me', 'option_phone', 'option_email',
-            'option_curr_loc', 'option_accounts', 'title',
-            'option_accounts', 'custom_img_url'
-        );
-
-        $instance = array();
-
-        $instance = $this->get_profile_data($new_instance);
-
-        // Check if valid int is passed
-        $image_size = $new_instance['image_size'];
-        $instance['image_size'] = (!empty($image_size) || is_numeric($image_size))
-            ? $image_size : 200;
-
-        foreach ($values as $value) {
-            $instance[$value] = (!empty($new_instance[$value]))
-                ? strip_tags($new_instance[$value])
-                : '';
-        }
-
-        return $instance;
-    }
 
 } // class MeWidget
 

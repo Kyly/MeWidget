@@ -33,6 +33,7 @@ define( 'ME_WIDGET_VERSION', '1.0.0' );
 define( 'ME_WIDGET__MINIMUM_WP_VERSION', '3.0' );
 define( 'ME_WIDGET__PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 define( 'ME_WIDGET__PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
+define( 'ME_WIDGET_DIR', dirname( plugin_basename(__FILE__) ) );
 
 require_once( ME_WIDGET__PLUGIN_DIR . 'class.MeWidget.php' );
 
@@ -45,11 +46,11 @@ function load_me_widget_admin_styles($hook) {
     if ( 'widgets.php' != $hook )
         return;
 
-    wp_register_style( 'MeWidget', plugins_url( 'me-widget/css/plugin.css' ) );
+    wp_register_style( 'MeWidget', ME_WIDGET__PLUGIN_URL . '/css/plugin.css' );
     wp_enqueue_style( 'MeWidget' );
 
     wp_enqueue_style( 'font-awesome',
-        plugins_url( 'me-widget/css/font-awesome.min.css' ),
+        ME_WIDGET__PLUGIN_URL . '/css/font-awesome.min.css',
         null, '4.1.0' );
 
 }
