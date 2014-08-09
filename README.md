@@ -69,8 +69,8 @@ For images you can make your own selectors then add them using the
 Here a list of prepackaged styles:
 | Selector | Attributes |
 |:---------|:-----------|
-|right-align| float: right  margin-left: .5em|
-|left-align| float: left  margin-right: .5em|
+| right-align | float: right  margin-left: .5em |
+| left-align | float: left  margin-right: .5em |
 
 [gravatar]: https://gravatar.com "Gravatar"
 [1]: http://fortawesome.github.io/Font-Awesome/cheatsheet/ "Font Awesome Icons"
