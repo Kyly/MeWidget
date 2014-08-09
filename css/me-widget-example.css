@@ -1,0 +1,51 @@
+/*---------------------------Your Image Styles ------------------------------*/
+
+/*
+ * Use this to add new styles to your image
+ */
+.widget div.me-widget .your-class-name-here {
+    /* Your Styles Here */
+}
+
+/*-----------------------------Your Styles-----------------------------------*/
+
+/* Widget container */
+.widget div#me-widget {
+    /* Your Styles Here */
+}
+/* Picture */
+.widget .me-widget img {
+    /* Your Styles Here */
+}
+/* Contact info */
+.widget .me-widget .vcard {
+    /* Your Styles Here */
+}
+/* Name */
+.widget .me-widget .vcard > .fn.n {
+    /* Your Styles Here */
+}
+/* email */
+.widget .me-widget .vcard > .email {
+    /* Your Styles Here */
+}
+/* email */
+.widget .me-widget .vcard > .tel {
+    /* Your Styles Here */
+}
+/* location */
+.widget .me-widget .vcard > .adr {
+    /* Your Styles Here */
+}
+/* About Me */
+.widget .me-widget .vcard > .about {
+    /* Your Styles Here */
+}
+/* Social link container */
+.widget .me-widget .vcard > div.url {
+    /* Your Styles Here */
+}
+/* Social links */
+.widget .me-widget .vcard > div.url > a {
+    /* Your Styles Here */
+}
