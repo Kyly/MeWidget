@@ -82,4 +82,4 @@ just give me a pull request.
 [3]: http://fortawesome.github.io/Font-Awesome/ "Font Awesome"
 [4]: https://github.com/Kyly/MeWidget/blob/master/soc_icons_fa "Social Icon List"
 [5]: https://github.com/Kyly/MeWidget/archive/v0.1.1.zip "Download Me Widget v0.1.1"
-[6]:
+[6]: https://github.com/Kyly/MeWidget/blob/master/css/me-widget-example.css "Example CSS"
