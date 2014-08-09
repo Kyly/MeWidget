@@ -67,6 +67,7 @@ For images you can make your own selectors then add them using the
 `Image attributes` dialog.
 
 Here a list of prepackaged styles:
+
 | Selector | Attributes |
 |:---------|:-----------|
 | right-align | float: right  margin-left: .5em |
