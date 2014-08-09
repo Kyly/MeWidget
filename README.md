@@ -8,7 +8,10 @@ your Wordpress, offering easy customizations and straight forward styling.
 Description
 -----------
 *Me Widget* is a widget designed to be used with Wordpress 3.9 sites, and requires
-having a [Gravatar][] profile.
+having a [Gravatar][] profile. *Me Widget* is similar to
+[Jetpacks Gravatar Profile Widget][7] but provides extra customization like
+using a avatar not on your [Gravatar][] profile or adding custom class tag to
+your avatar image easily from your widget panel.
 
 ####Features
 - **_Avatar_**        : Display your Gravatar or a custom avatar.
@@ -83,3 +86,4 @@ just give me a pull request.
 [4]: https://github.com/Kyly/MeWidget/blob/master/soc_icons_fa "Social Icon List"
 [5]: https://github.com/Kyly/MeWidget/archive/v0.1.1.zip "Download Me Widget v0.1.1"
 [6]: https://github.com/Kyly/MeWidget/blob/master/css/me-widget-example.css "Example CSS"
+[7]: http://jetpack.me/support/extra-sidebar-widgets/gravatar-profile-widget/ "Gravatar Profile Widget"
