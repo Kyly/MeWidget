@@ -30,7 +30,7 @@ Installation
 ------------
 _Requirements_: Wordpress 3.9.\* and PHP 5.
 
-1. Download [MeWidget-0.1.1.zip][5]. _(required)_
+1. Download [MeWidget-0.1.1.zip][5].
 2. Log into your Wordpress Dashboard then find the `plugin` tab an left
 then click `add new`.
 3. On the add new page simply click the upload link then click choose file.
@@ -41,8 +41,7 @@ Navigate to the MeWidget-0.1.1.zip then press `install`.
 
 * Place the widget into on of your side bars then under the
 widget option first put in a `Gravatar Account` email you wish to display then
-`save`.
-* If the email that was entered is valid you can then begin to
+`save`. If the email that was entered is valid you can then begin to
 select some of the options.
 * A small preview of the data that is contained within each option will be shown
 to the right of the check box label. If no data was retrieved for that item it
@@ -59,7 +58,8 @@ Example: `width=30%, class=thumbnail right-align` gets converted to
 
 ###Styling
 A few styles have already been provided for you but you most likely want to
-make more. A example CSS has been provided for you in the *Me Wiget* folder.
+make more. A example CSS has been provided for you in the `css` folder named
+[me-widget-example.css][6].
 Simply fill it in with your own styles. For images you can make your own
 selectors then add them using the `Image attributes` dialog.
 
@@ -73,6 +73,8 @@ Here a list of prepackaged _Image_ styles:
 | rounded | border-radius: 6px |
 | thumbnail | padding: 4px <br> line-height: 1.42857143<br>background-color: #ffffff<br>border: 1px solid #dddddd<br>border-radius: 4px<br>display: inline-block<br>width: 100% \9<br>max-width: 100%<br>height: auto<br>|
 
+More styles would be great. If you have one you would like to add to the widget
+just give me a pull request.
 
 [gravatar]: https://gravatar.com "Gravatar"
 [1]: http://fortawesome.github.io/Font-Awesome/cheatsheet/ "Font Awesome Icons"
@@ -80,3 +82,4 @@ Here a list of prepackaged _Image_ styles:
 [3]: http://fortawesome.github.io/Font-Awesome/ "Font Awesome"
 [4]: https://github.com/Kyly/MeWidget/blob/master/soc_icons_fa "Social Icon List"
 [5]: https://github.com/Kyly/MeWidget/archive/v0.1.1.zip "Download Me Widget v0.1.1"
+[6]:
