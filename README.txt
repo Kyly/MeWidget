@@ -1,44 +1,110 @@
-=== Plugin Name ===
-Contributors: (this should be a list of wordpress.org userid's)
-Donate link: http://example.com/
-Tags: comments, spam
-Requires at least: 3.0.1
-Tested up to: 3.4
-Stable tag: 4.3
-License: GPLv2 or later
+=== Me Widget ===
+Contributors: Kyly
+Tags: gravatar, profile, contact, contact info, avatar, customization
+Requires at least: 3.9.0
+Tested up to: 3.9.2
+Stable tag: trunk
+License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Here is a short description of the plugin.  This should be no more than 150 characters.  No markup here.
+Provides a simple way to incorporate and customize your Gravatar profile on
+your site.
 
 == Description ==
 
-This is the long description.  No limit, and you can use Markdown (as well as in the following sections).
+*Me Widget* is a widget designed to be used with Wordpress 3.9 sites, and requires
+having a [Gravatar][] profile. *Me Widget* is similar to
+[Jetpacks Gravatar Profile Widget][7] but provides extra customization like
+using a avatar not on your [Gravatar][] profile or adding custom class tag to
+your avatar image easily from your widget panel.
 
-For backwards compatibility, if this section is missing, the full length of the short description will be used, and
-Markdown parsed.
+= Features =
+- **_Avatar_**        : Display your Gravatar or a custom avatar.
+- **_Profile Info_**  : Display some, all, or none of the personal information
+from your [Gravatar][] profile.
+- **_Customize_**     : the way your avatar and profile data is displayed using
+preset styles.
+- **_CSS_**           : Easy to edit or make your own styles by adding the style
+template to your existing style sheet
+- **_Social Icons_**\*  : Displays icons for your verified accounts from your
+Wordpress profile.
 
-A few notes about the sections above:
-
-*   "Contributors" is a comma separated list of wp.org/wp-plugins.org usernames
-*   "Tags" is a comma separated list of tags that apply to the plugin
-*   "Requires at least" is the lowest version that the plugin will work on
-*   "Tested up to" is the highest version that you've *successfully used to test the plugin*. Note that it might work on
-higher versions... this is just the highest one you've verified.
-*   Stable tag should indicate the Subversion "tag" of the latest stable version, or "trunk," if you use `/trunk/` for
-stable.
-
-    Note that the `readme.txt` of the stable tag is the one that is considered the defining one for the plugin, so
-if the `/trunk/readme.txt` file says that the stable tag is `4.3`, then it is `/tags/4.3/readme.txt` that'll be used
-for displaying information about the plugin.  In this situation, the only thing considered from the trunk `readme.txt`
-is the stable tag pointer.  Thus, if you develop in trunk, you can update the trunk `readme.txt` to reflect changes in
-your in-development version, without having that information incorrectly disclosed about the current stable version
-that lacks those changes -- as long as the trunk's `readme.txt` points to the correct stable tag.
-
-    If no stable tag is provided, it is assumed that trunk is stable, but you should specify "trunk" if that's where
-you put the stable version, in order to eliminate any doubt.
+\*Icons are provided by [Font Awesome 4.1.0][3] created by [Dave Gandy][2], the
+font's cheat sheet is found [here] [1], and the list that the widget recognizes
+is found [here][4] (_This list may not be complete, if there is an icon that is_
+ _in Awesome Fonts that should be included in this list please let me know_).
 
 == Installation ==
 
-This section describes how to install the plugin and get it working.
+_Requirements_: Wordpress 3.9.\* and PHP 5.
 
-e.g.
+1. Download [MeWidget-0.1.1.zip][5].
+2. Log into your Wordpress Dashboard then find the `plugin` tab on the left
+then click `add new`.
+3. On the add new page simply click the upload link then click choose file.
+Navigate to the MeWidget-0.1.1.zip then press `install`.
+4. Once _Me Widget_ is installed activate.
+
+= Setup =
+
+* Place the widget into one of your side bars then under the
+widget option first put in a `Gravatar Account` email you wish to display then
+`save`. If the email that was entered is valid you can then begin to
+select some of the options.
+* A small preview of the data that is contained within each option will be shown
+to the right of the check box label. If no data was retrieved for that item it
+will be left blank.
+* If you would like an image other than the one provided by Gravatar, enter
+the url to the image in the `Custom Image Url` text box.
+* With `Image size` you can set the pixel width of the image _(Note: this
+is not the same as the display width)_. This option is not available for custom
+images.
+* You can add attributes by listing them in `Image attributes` text box.
+Example: `width=30%, class=thumbnail right-align` gets converted to
+`<img src="http://localhost/kylyv/wp-content/uploads/me_graphic.png" width="30%"`
+` class="thumbnail right-align">`
+
+###Styling
+A few styles have already been provided for you but you will most likely want to
+make more. An example CSS has been provided for you in the `css` folder named
+[me-widget-example.css][6].
+Simply fill it in with your own styles. For images you can make your own
+selectors then add them using the `Image attributes` dialog.
+
+Here a list of prepackaged _Image_ styles:
+
+| Class | Attributes |
+|:---------|:-----------|
+| right-align | float: right, margin-left: .5em |
+| left-align | float: left, margin-right: .5em |
+| circle | border-radius: 50% |
+| rounded | border-radius: 6px |
+| thumbnail | padding: 4px <br>line-height: 1.42857143<br>background-color: #ffffff<br>border: 1px solid #dddddd<br>border-radius: 4px<br>display: inline-block<br>width: 100%\9<br>max-width: 100%<br>height: auto<br>|
+
+More styles would be great. If you have one you would like to add to the widget
+just give me a pull request.
+
+== Frequently Asked Questions ==
+
+None added yet
+
+== Screenshots ==
+
+1. Widget panel.
+2. Add attributes through the widget panel.
+3. Use a different avatar then the on you have on Gravatar
+
+== Changelog ==
+
+
+== Upgrade Notice ==
+
+
+[gravatar]: https://gravatar.com "Gravatar"
+[1]: http://fortawesome.github.io/Font-Awesome/cheatsheet/ "Font Awesome Icons"
+[2]: https://twitter.com/davegandy "Dave Gandy"
+[3]: http://fortawesome.github.io/Font-Awesome/ "Font Awesome"
+[4]: https://github.com/Kyly/MeWidget/blob/master/soc_icons_fa "Social Icon List"
+[5]: https://github.com/Kyly/MeWidget/archive/v0.1.1.zip "Download Me Widget v0.1.1"
+[6]: https://github.com/Kyly/MeWidget/blob/master/css/me-widget-example.css "Example CSS"
+[7]: http://jetpack.me/support/extra-sidebar-widgets/gravatar-profile-widget/ "Gravatar Profile Widget"

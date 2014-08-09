@@ -36,7 +36,6 @@ define( 'ME_WIDGET__PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'ME_WIDGET_DIR', dirname( plugin_basename(__FILE__) ) );
 
 require_once( ME_WIDGET__PLUGIN_DIR . 'class.MeWidget.php' );
-
 /**
  * Que up styles for the widget dashboard.
  * @param $hook registered Wordpress hook.

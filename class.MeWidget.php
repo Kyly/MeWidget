@@ -46,7 +46,6 @@ class MeWidget extends WP_Widget
      */
     public function widget($args, $instance)
     {
-
         // Locals
         $title        = apply_filters('widget_title', $instance['title']);
         $grav_email   = $instance['gravatar_account'];
