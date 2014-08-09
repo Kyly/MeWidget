@@ -30,30 +30,30 @@ Installation
 ------------
 _Requirements_: Wordpress 3.9.\* and PHP 5.
 1. Download [MeWidget-0.1.1.zip][5]. _(required)_
-2. Log into your Wordpress Dashboard then find the ````plugin```` tab an left
-then click ````add new````.
+2. Log into your Wordpress Dashboard then find the `plugin` tab an left
+then click `add new`.
 3. On the add new page simply click the upload link then click choose file.
-Navigate to the MeWidget-0.1.1.zip then press ````install```.
+Navigate to the MeWidget-0.1.1.zip then press `install`.
 4. Once _Me Widget_ is installed activate.
 
 ####Setup
 
 * Place the widget into on of your side bars then under the
 widget option first put in a Gravatar account email you wish to display then
-````save````.
+`save`.
 * If the email that was entered is valid you can then begin to
 select some of the options.
 * A small preview of the data that is contained within each option will be shown
 to the right of the check box label. If no data was retrieved for that item it
 will be left blank.
 * If you would like a image other then the one provided by Gravatar, enter the
-the url to the image in the ````Custom Image Url```` text box.
-* With ````Image size```` you can set the pixel width of the image _(Note: this
+the url to the image in the `Custom Image Url` text box.
+* With `Image size` you can set the pixel width of the image _(Note: this
 is not the same as the display width)_. This option is not available for custom
 images.
-* You can add attributes by listing them in ````Image attributes```` text box.
-Example: ````width=30%, class=thumbnail right-align``` gets converted to
-````<img src="http://localhost/kylyv/wp-content/uploads/me_graphic.png" width="30%" class="thumbnail right-align">````
+* You can add attributes by listing them in `Image attributes` text box.
+Example: `width=30%, class=thumbnail right-align` gets converted to
+`<img src="http://localhost/kylyv/wp-content/uploads/me_graphic.png" width="30%" class="thumbnail right-align">`
 
 ###Styling
 
