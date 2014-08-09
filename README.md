@@ -58,20 +58,19 @@ Example: `width=30%, class=thumbnail right-align` gets converted to
 
 ###Styling
 A few styles have already been provided for you but you most likely want to
-make more.
+make more. A example CSS has been provided for you in the *Me Wiget* folder.
+Simply fill it in with your own styles. For images you can make your own
+selectors then add them using the `Image attributes` dialog.
 
-A example CSS has been provided for you in the *Me Wiget* folder.
-Simply fill it in with your own styles.
+Here a list of prepackaged _Image_ styles:
 
-For images you can make your own selectors then add them using the
-`Image attributes` dialog.
-
-Here a list of prepackaged styles:
-
-| Selector | Attributes |
+| Class | Attributes |
 |:---------|:-----------|
-| right-align | float: right  margin-left: .5em |
-| left-align | float: left  margin-right: .5em |
+| right-align | float: right <br> margin-left: .5em |
+| left-align | float: left <br> margin-right: .5em |
+| circle | border-radius: 50% |
+| rounded | border-radius: 6px |
+| thumbnail | padding: 4px <br> line-height: 1.42857143<br>background-color: #ffffff<br>border: 1px solid #dddddd<br>border-radius: 4px<br>display: inline-block<br>width: 100% \9<br>max-width: 100%<br>height: auto<br>|
 
 [gravatar]: https://gravatar.com "Gravatar"
 [1]: http://fortawesome.github.io/Font-Awesome/cheatsheet/ "Font Awesome Icons"

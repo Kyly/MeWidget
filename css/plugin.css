@@ -47,9 +47,6 @@ GNU General Public License for more details (http://www.gnu.org/licenses/).
     background-color: #ffffff;
     border: 1px solid #dddddd;
     border-radius: 4px;
-    -webkit-transition: all 0.2s ease-in-out;
-    -o-transition: all 0.2s ease-in-out;
-    transition: all 0.2s ease-in-out;
     display: inline-block;
     width: 100% \9;
     max-width: 100%;
