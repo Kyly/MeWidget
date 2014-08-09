@@ -29,6 +29,7 @@ is found [here][4] (_This list may not be complete, if there is a icon that is_
 Installation
 ------------
 _Requirements_: Wordpress 3.9.\* and PHP 5.
+
 1. Download [MeWidget-0.1.1.zip][5]. _(required)_
 2. Log into your Wordpress Dashboard then find the `plugin` tab an left
 then click `add new`.
@@ -71,6 +72,7 @@ Here a list of prepackaged _Image_ styles:
 | circle | border-radius: 50% |
 | rounded | border-radius: 6px |
 | thumbnail | padding: 4px <br> line-height: 1.42857143<br>background-color: #ffffff<br>border: 1px solid #dddddd<br>border-radius: 4px<br>display: inline-block<br>width: 100% \9<br>max-width: 100%<br>height: auto<br>|
+
 
 [gravatar]: https://gravatar.com "Gravatar"
 [1]: http://fortawesome.github.io/Font-Awesome/cheatsheet/ "Font Awesome Icons"
