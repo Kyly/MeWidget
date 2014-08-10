@@ -2,7 +2,9 @@
 /*
 Plugin Name: Me Widget
 Plugin URI: https://github.com/Kyly/MeWidget
-Description: Show info about me!
+Description: This is handy little plugin for creating a highly customizable
+Gravatar widget. Show your contact information and even use a local image
+for you avatar.
 Version: 1.0
 Author: Kyly Vass
 License: GPLv2
@@ -30,12 +32,13 @@ if ( !function_exists( 'add_action' ) ) {
 }
 
 define( 'ME_WIDGET_VERSION', '1.0.0' );
-define( 'ME_WIDGET__MINIMUM_WP_VERSION', '3.0' );
+define( 'ME_WIDGET__MINIMUM_WP_VERSION', '3.9' );
 define( 'ME_WIDGET__PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 define( 'ME_WIDGET__PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'ME_WIDGET_DIR', dirname( plugin_basename(__FILE__) ) );
 
-require_once( ME_WIDGET__PLUGIN_DIR . 'class.MeWidget.php' );
+require_once( ME_WIDGET__PLUGIN_DIR . 'class.me-widget.php' );
+
 /**
  * Que up styles for the widget dashboard.
  * @param $hook registered Wordpress hook.
@@ -45,8 +48,8 @@ function load_me_widget_admin_styles($hook) {
     if ( 'widgets.php' != $hook )
         return;
 
-    wp_register_style( 'MeWidget', ME_WIDGET__PLUGIN_URL . '/css/plugin.css' );
-    wp_enqueue_style( 'MeWidget' );
+    wp_register_style( 'me-widget-style', ME_WIDGET__PLUGIN_URL . '/css/plugin.css' );
+    wp_enqueue_style( 'me-widget-style' );
 
     wp_enqueue_style( 'font-awesome',
         ME_WIDGET__PLUGIN_URL . '/css/font-awesome.min.css',
