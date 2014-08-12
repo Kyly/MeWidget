@@ -7,6 +7,7 @@ Gravatar widget. Show your contact information and even use a local image
 for you avatar.
 Version: 1.0
 Author: Kyly Vass
+Author URI: http://kylyv.com
 License: GPLv2
 */
 
@@ -37,7 +38,7 @@ define( 'ME_WIDGET__PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 define( 'ME_WIDGET__PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'ME_WIDGET_DIR', dirname( plugin_basename(__FILE__) ) );
 
-require_once( ME_WIDGET__PLUGIN_DIR . 'class.me-widget.php' );
+require_once( ME_WIDGET__PLUGIN_DIR . 'class.MeWidget.php' );
 
 /**
  * Que up styles for the widget dashboard.
@@ -48,8 +49,8 @@ function load_me_widget_admin_styles($hook) {
     if ( 'widgets.php' != $hook )
         return;
 
-    wp_register_style( 'me-widget-style', ME_WIDGET__PLUGIN_URL . '/css/plugin.css' );
-    wp_enqueue_style( 'me-widget-style' );
+    wp_register_style( 'MeWidget', ME_WIDGET__PLUGIN_URL . '/css/plugin.css' );
+    wp_enqueue_style( 'MeWidget' );
 
     wp_enqueue_style( 'font-awesome',
         ME_WIDGET__PLUGIN_URL . '/css/font-awesome.min.css',

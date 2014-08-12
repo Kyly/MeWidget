@@ -48,7 +48,7 @@ class MeWidget extends WP_Widget
     {
         // Locals
         $title        = apply_filters('widget_title', $instance['title']);
-        $grav_email   = $instance['gravatar_account'];
+        $prime_email   = $instance['email'];
         $email_format = '<div class="email"><a href="mailto:%s">%s</a></div>';
         $adr_format   = '<div class="adr">%s</div>';
         $tel_format   = '<div class="tel">%s</div>';
@@ -88,7 +88,7 @@ class MeWidget extends WP_Widget
         if (!empty($instance['option_name']) && !empty($instance['name']))
             $html .= sprintf($name_format, $instance['name']);
         if (!empty($instance['option_email']))
-            $html .= sprintf($email_format, $grav_email, $grav_email);
+            $html .= sprintf($email_format, $prime_email, $prime_email);
         if (!empty($instance['phone']) && !empty($instance['option_phone']))
             $html .= sprintf($tel_format, $instance['phone']);
         if (!empty($instance['current_location']) && !empty($instance['option_curr_loc']))
