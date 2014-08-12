@@ -32,8 +32,15 @@ is found [here][4] (_This list may not be complete, if there is an icon that is_
 Installation
 ------------
 _Requirements_: Wordpress 3.9.\* and PHP 5.
+### Wordpress Plugin Repository ### _(Easiest)_
+1. Naviagate to the plugin page on your Wordpress dash board then click on 
+the add button. Search for "Me Widget". _Me Widget_ should be at the top of
+that search.
+2. Click on the install link. Once installed activate the plugin and your
+good to go!
 
-1. Download [MeWidget-0.1.1.zip][5].
+### Download Here ### _(Easy)_
+1. Download [MeWidget-1.0.1.zip][5].
 2. Log into your Wordpress Dashboard then find the `plugin` tab on the left
 then click `add new`.
 3. On the add new page simply click the upload link then click choose file.
@@ -79,11 +86,17 @@ Here a list of prepackaged _Image_ styles:
 More styles would be great. If you have one you would like to add to the widget
 just give me a pull request.
 
+Cangelog
+===
+
+###v1.0.1
+* Fixed wrong email showing in widget.
+
 [gravatar]: https://gravatar.com "Gravatar"
 [1]: http://fortawesome.github.io/Font-Awesome/cheatsheet/ "Font Awesome Icons"
 [2]: https://twitter.com/davegandy "Dave Gandy"
 [3]: http://fortawesome.github.io/Font-Awesome/ "Font Awesome"
 [4]: https://github.com/Kyly/MeWidget/blob/master/soc_icons_fa "Social Icon List"
-[5]: https://github.com/Kyly/MeWidget/archive/v0.1.1.zip "Download Me Widget v0.1.1"
+[5]: https://github.com/Kyly/MeWidget/archive/v1.0.1.zip "Download Me Widget v0.1.1"
 [6]: https://github.com/Kyly/MeWidget/blob/master/css/me-widget-example.css "Example CSS"
 [7]: http://jetpack.me/support/extra-sidebar-widgets/gravatar-profile-widget/ "Gravatar Profile Widget"
