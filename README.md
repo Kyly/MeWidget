@@ -89,7 +89,7 @@ just give me a pull request.
 Cangelog
 ===
 
-###v1.0.1
+###v1.0.3
 * Fixed wrong email showing in widget.
 
 [gravatar]: https://gravatar.com "Gravatar"
