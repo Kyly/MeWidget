@@ -86,7 +86,7 @@ Here a list of prepackaged _Image_ styles:
 More styles would be great. If you have one you would like to add to the widget
 just give me a pull request.
 
-Cangelog
+Changelog
 ===
 
 ###v1.0.3
